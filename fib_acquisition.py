@@ -17,7 +17,7 @@ doc = session.FIB.Scan.AcquireImage("SE", Bpp.Grayscale_16_bit, w, h, dwell)
 
 img16 = np.asarray(doc.Image)
 
-plt.imsave("fib_16bit.png", img16, cmap="gray", vmin=0, vmax=65535)
+plt.imsave("~/balthazar/fib_16bit.png", img16, cmap="gray", vmin=0, vmax=65535)
 
 plt.imshow(img16, cmap="gray", vmin=0, vmax=65535)
 plt.axis("off")
