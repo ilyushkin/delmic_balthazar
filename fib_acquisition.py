@@ -21,6 +21,8 @@ path = os.path.expanduser("~/balthazar/fib_16bit.png")
 plt.imsave(path, img16, cmap="gray", vmin=0, vmax=65535)
 print("Saved to:", path)
 
+plt.figure(figsize=(w/100, h/100), dpi=100)
 plt.imshow(img16, cmap="gray", vmin=0, vmax=65535)
 plt.axis("off")
+plt.subplots_adjust(left=0, right=1, bottom=0, top=1)
 plt.show()
