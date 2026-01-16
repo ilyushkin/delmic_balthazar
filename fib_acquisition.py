@@ -1,9 +1,11 @@
 import balthazar as blt
-from tescanautomation import Automation
+import sys, os
+from tescanautomation import Automation, GUI
 from tescanautomation.Common import Bpp
 import numpy as np
 import matplotlib.pyplot as plt
 
+app = GUI.Application(sys.argv)
 
 microscope_ip = blt.params['ip_address']
 
@@ -13,4 +15,12 @@ session.FIB.Detector.Set(0, 'SE')
 w, h, dwell = 512, 512, 1000
 doc = session.FIB.Scan.AcquireImage("SE", Bpp.Grayscale_16_bit, w, h, dwell)
 
-doc.Image.show()
+img16 = np.asarray(doc.Image)
+
+out_path = os.path.join(os.path.dirname(__file__), "fib_16bit.png")
+plt.imsave(out_path, img16, cmap="gray", vmin=0, vmax=65535)
+print("Saved to", out_path)
+
+plt.imshow(img16, cmap="gray", vmin=0, vmax=65535)
+plt.axis("off")
+plt.show()
