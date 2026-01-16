@@ -12,8 +12,10 @@ microscope_ip = blt.params['ip_address']
 session = Automation(microscope_ip)  # default port 8300
 session.FIB.Detector.Set(0, 'SE')
 
-w, h, dwell = 512, 512, 1000
-doc = session.FIB.Scan.AcquireImage("SE", Bpp.Grayscale_16_bit, w, h, dwell)
+width = blt.params['width']
+height = blt.params['height']
+dwell_time = blt.params['dwell_time']
+doc = session.FIB.Scan.AcquireImage("SE", Bpp.Grayscale_16_bit, width, height, dwell_time)
 
 img16 = np.asarray(doc.Image)
 
@@ -26,3 +28,4 @@ plt.imshow(img16, cmap="gray", vmin=0, vmax=65535)
 plt.axis("off")
 plt.subplots_adjust(left=0, right=1, bottom=0, top=1)
 plt.show()
+
