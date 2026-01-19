@@ -3,6 +3,7 @@ import sys, os
 import odemis.cli.main as ocli
 from tescanautomation import Automation, GUI
 from tescanautomation.Common import Bpp
+import tifffile as tiff
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -37,3 +38,15 @@ ocli.acquire('Electron-Detector', ["data"], sem_file)
 ocli.acquire('Ion-Detector', ["data"], fib_file)
 print("Saved SEM image to", sem_file)
 print("Saved FIB image to", fib_file)
+
+with tiff.TiffFile(sem_file) as tif:
+    arr = tif.pages[0].asarray()
+plt.imshow(arr, cmap="gray")
+plt.axis("off")
+plt.show()
+
+with tiff.TiffFile(fib_file) as tif:
+    arr = tif.pages[0].asarray()
+plt.imshow(arr, cmap="gray")
+plt.axis("off")
+plt.show()
