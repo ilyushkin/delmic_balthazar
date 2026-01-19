@@ -1,5 +1,6 @@
 import balthazar as blt
 import sys, os
+import odemis.cli.main as ocli
 from tescanautomation import Automation, GUI
 from tescanautomation.Common import Bpp
 import numpy as np
@@ -29,3 +30,7 @@ plt.axis("off")
 plt.subplots_adjust(left=0, right=1, bottom=0, top=1)
 plt.show()
 
+
+
+ocli.acquire('Electron-Detector', ["data"], '~/balthazar/sem.tiff')
+ocli.acquire('Ion-Detector', ["data"], '~/balthazar/fib.tiff')
