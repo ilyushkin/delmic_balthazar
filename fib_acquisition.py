@@ -41,6 +41,9 @@ print("Saved FIB image to", fib_file)
 
 with tiff.TiffFile(sem_file) as tif:
     arr = tif.pages[0].asarray()
-plt.imshow(arr, cmap="gray")
-plt.axis("off")
+fig, ax = plt.subplots(figsize=(arr.shape[1]/100, arr.shape[0]/100), dpi=100)
+ax.imshow(arr, cmap="gray")
+ax.axis("off")
+fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+fig.canvas.draw()
 plt.show()
