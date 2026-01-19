@@ -1,6 +1,5 @@
 import balthazar as blt
 import sys, os
-from pathlib import Path
 import odemis.cli.main as ocli
 from tescanautomation import Automation, GUI
 from tescanautomation.Common import Bpp
@@ -32,7 +31,7 @@ plt.subplots_adjust(left=0, right=1, bottom=0, top=1)
 plt.show()
 
 
-sem_file = str(Path("~/balthazar/sem.tiff").expanduser())
-fib_file = str(Path("~/balthazar/fib.tiff").expanduser())
+sem_file = os.path.expanduser("~/balthazar/sem.tiff")
+fib_file = os.path.expanduser("~/balthazar/fib.tiff")
 ocli.acquire('Electron-Detector', ["data"], sem_file)
 ocli.acquire('Ion-Detector', ["data"], fib_file)
